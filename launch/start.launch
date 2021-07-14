@@ -1,0 +1,17 @@
+<launch>
+    <include file="$(find chassis_base)/launch/joystick_teleop.launch"/>
+
+    <param name="robot_description" textfile="$(find chassis_base)/urdf/chassis.urdf"/>
+
+    <node name="canopen_motor" pkg="canopen_motor_node" type="canopen_motor_node" output="screen" clear_params="true">
+        <rosparam command="load" file="$(find chassis_base)/config/Hub_Motor.yaml"/>
+    </node>
+
+    <node name="socketcan_bridge" pkg="socketcan_bridge" type="socketcan_bridge_node" output="screen">
+        <rosparam command="load" file="$(find chassis_base)/config/socketcan_bridge_params.yaml"/>
+    </node>
+
+    <node pkg="rosservice" type="rosservice" name="init_driver" args="call --wait /driver/init"/>
+
+    <include file="$(find chassis_base)/launch/controller.launch"/>
+</launch>

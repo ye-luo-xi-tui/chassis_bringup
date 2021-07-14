@@ -1,0 +1,10 @@
+[Unit]
+Description=rm auto set can
+After=network-online.target
+[Service]
+User=ubuntu
+Type=simple
+#Type=forking
+ExecStart=/bin/bash -c "/home/ubuntu/AutoSetCan.sh"
+[Install]
+WantedBy=multi-user.target
