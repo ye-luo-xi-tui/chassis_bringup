@@ -1,7 +1,7 @@
 <launch>
     <include file="$(find chassis_base)/launch/joystick_teleop.launch"/>
 
-    <param name="robot_description" textfile="$(find chassis_base)/urdf/chassis.urdf"/>
+    <param name="robot_description" textfile="$(find chassis_description)/urdf/chassis.urdf"/>
 
     <node name="canopen_motor" pkg="canopen_motor_node" type="canopen_motor_node" output="screen" clear_params="true">
         <rosparam command="load" file="$(find chassis_base)/config/Hub_Motor.yaml"/>
